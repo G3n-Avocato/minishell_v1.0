@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 15:00:23 by lamasson          #+#    #+#             */
-/*   Updated: 2023/06/06 17:23:35 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/06/06 19:52:21 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,23 +98,30 @@ char	*ft_handle_var_env(char *str, t_files files)
 	ft_free_data_var_env(&data, data.nb_dol);
 	return (new_str);
 }
-/*
+
 int	main(int argc, char **argv, char **env)
 {
 	(void)argc;
 	(void)argv;
-	char	*str;
-	char	*new;
 
-	str = "lol$USER$USER$USERSS.LDL.shh"; // = lamasson.SDSS $USER$USER = lamassonlamasson $USERldl = ""
+	char	*str;
+	str = " '\"'\"$USER\"'\"' "; // = lamasson.SDSS $USER$USER = lamassonlamasson $USERldl = ""
+	
 	t_files	files;
 	ft_init_tab_env(env, &files);
-
-	new = ft_handle_var_env(str, files);
 	
+	char	*t;
+	t = ft_strdup(str);
+	str = ft_remove_quotes(t);
+	printf("%s\n", str);
+	//free(t);	
+	
+	char	*new;
+	new = ft_handle_var_env(str, files);
 	printf("%s\n", new);
 
 	ft_free_tab(files.tab_var_env);
 	free(new);
+	free(str);
 	return (0);
-}*/
+}

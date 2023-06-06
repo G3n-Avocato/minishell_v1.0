@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
+/*
 int	open_fdin(t_files files)
 {
 	int	op;
@@ -35,7 +35,7 @@ int	open_fdout(t_files files)
 		op = open(files.fd_out, O_RDWR | O_CREAT | O_TRUNC, 0644);	
 	return (op);
 }
-/*
+
 static void		ft_dup(int fd_in, int *fd, t_files files, t_mishell mish)
 {
 	if (files.fd_in == NULL && files.pos_cmd == 0)
@@ -66,7 +66,7 @@ static void		ft_dup(int fd_in, int *fd, t_files files, t_mishell mish)
 	//dup2(fd[1], 1);
 	//close(fd[1]);
 
-}*/
+}
 
 static void	ft_dup(int fd_in , int *fd, t_files files, t_mishell mish)
 {
@@ -153,8 +153,8 @@ int	ft_call_pipex(t_mishell mish, t_files *files)
 	if (fd_in > 0)
 		close(fd_in);
 	return (0);
-}
-
+}*/
+/*
 int	main(int argc, char **argv, char **env)
 {
  	t_mishell	mish;
@@ -186,7 +186,7 @@ int	main(int argc, char **argv, char **env)
 // //pipex en test //
 	
  	ft_call_pipex(mish, &files);
-/*
+
 	printf("\n\n");
 	int	i = 0;
 	while (files.tab_var_env[i])
@@ -194,10 +194,10 @@ int	main(int argc, char **argv, char **env)
 		//if (ft_strncmp(files.tab_var_env[i], "PWD", 3) == 0 || ft_strncmp(files.tab_var_env[i], "OLDPWD", 6) == 0)
 		printf("%s\n\n", files.tab_var_env[i]);
 		i++;
-	}*/
+	}
 	free(tab_str);	
 
 	ft_free_files(&files);
 	ft_free_cmds(&mish);
 	return (0);
-}
+}*/

@@ -15,6 +15,7 @@
 int	ft_betweenchar(char *s, int pos, char cquote)
 {
 	int		i;
+	int		len;
 	int		quote;
 	char	c;
 
@@ -23,7 +24,8 @@ int	ft_betweenchar(char *s, int pos, char cquote)
 	c = '\0';
 	if (!s[pos])
 		return (0);
-	if (ft_strlen(s) <= pos)
+	len = ft_strlen(s);
+	if (len <= pos)
 		return (0);
 	while (s[++i])
 	{

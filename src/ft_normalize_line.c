@@ -43,7 +43,7 @@ char	*remove_char(char *s, int pos)
 	while (s[pos])
 	{
 		s[pos] = s[pos + 1];
-        pos++;
+        	pos++;
 	}
 	s[ft_strlen(s)] = '\0';
 	return (s);

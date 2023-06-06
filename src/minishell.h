@@ -6,7 +6,7 @@
 /*   By: gbertet <gbertet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 17:30:57 by lamasson          #+#    #+#             */
-/*   Updated: 2023/06/06 17:56:49 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/06/06 19:17:43 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,7 @@ typedef struct 	s_fds
 	int		err;
 }				t_fds;
 
-
 typedef struct s_files{
-	int		out;			// -1 = no fichier out / 0 redirection simple / 1 redirection append mode
-	int		nb_pipe;		//defini ordre de verif (defini manuellement)(a revoir)(nb_cmds - 1 = nb_pipe)
-	int		err;
 	char	**tab_var_env;	//notre tableau de variables d'environnements
 	char	**tab_path;		//PATH val split, tableau de tous les paths ':'
 	int		pos_cmd;		//position dans le tab des cmds pendant son execution
@@ -136,6 +132,7 @@ char	*ft_read_here_doc(char *prompt, char *eof);
 //		FT_NORMALIZE_LINE.C		//
 char	*normalize_str(char *s);
 char	**ft_remove_redirections(char **cmd);
+char	*ft_remove_quotes(char *s);
 
 //		PARSING_REDIRECTION.C	//
 t_fds	*parsing_fd(char **str);
