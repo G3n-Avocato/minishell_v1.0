@@ -6,12 +6,11 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 13:21:26 by lamasson          #+#    #+#             */
-/*   Updated: 2023/05/26 14:00:56 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/06/06 17:47:46 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-#include <errno.h>
 
 int	ft_exec_cmd(t_mishell mish, t_files files)
 {

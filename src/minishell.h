@@ -6,7 +6,7 @@
 /*   By: gbertet <gbertet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 17:30:57 by lamasson          #+#    #+#             */
-/*   Updated: 2023/06/06 16:52:30 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/06/06 17:56:49 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,12 @@ typedef struct 	s_fds
 	char	*fd_in;
 	char	*fd_out;
 	int		in;
-	int		out;
+	int		out; // -1 = no fichier out / 0 redirection simple / 1 redirection append mode
 	int		err;
 }				t_fds;
 
 
 typedef struct s_files{
-	char	*fd_in;			//string malloc de fd_in "test.c" if NULL no in
-	char	*fd_out;		//string malloc de fd_out "test/test1.c" if NULL no out
 	int		out;			// -1 = no fichier out / 0 redirection simple / 1 redirection append mode
 	int		nb_pipe;		//defini ordre de verif (defini manuellement)(a revoir)(nb_cmds - 1 = nb_pipe)
 	int		err;
