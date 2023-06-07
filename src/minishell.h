@@ -6,7 +6,7 @@
 /*   By: gbertet <gbertet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 17:30:57 by lamasson          #+#    #+#             */
-/*   Updated: 2023/06/06 19:17:43 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/06/07 21:39:45 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ int		check_if_cmd_built(t_cmd cmds); //return (0) si no built ou (1) si built
 
 //		FT_UTILS.C				//
 int		ft_iswhitespace(char c);
+int		ft_betweenchar(char *s, int pos, char cquote);
 int		ft_betweenquotes(char *s, int pos);
 int		ft_strstrlen(char **s);
 
@@ -186,6 +187,7 @@ char	*ft_handle_var_env(char *str, t_files files);
 //		FT_PARSING_VAR_ENV_UTILS.C	//
 int		ft_check_dollar(char *str, int i);
 int		ft_check_end_name(char *str, int i);
+void	ft_str_data(char *str, t_var_env *data);
 void	ft_free_data_var_env(t_var_env *data, int n);
 char	*rec_name_var_env(char *str);
 
