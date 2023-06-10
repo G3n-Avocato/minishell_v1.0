@@ -6,7 +6,7 @@
 /*   By: gbertet <gbertet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 17:30:57 by lamasson          #+#    #+#             */
-/*   Updated: 2023/06/08 16:39:33 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/06/10 16:38:20 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@
 # include <sys/time.h> //?
 # include <termios.h> //tcsetattr, tcgetattr, isatty, ttyname, ttyslot, ioctl
 # include "../libft/libft.h"
+
+extern int	g_status;
 
 typedef struct s_mishell
 {
