@@ -6,7 +6,7 @@
 /*   By: gbertet <gbertet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 13:47:51 by lamasson          #+#    #+#             */
-/*   Updated: 2023/06/08 17:16:14 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/06/11 13:53:30 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,7 +155,7 @@ int	ft_call_pipex(t_mishell *mish)
 		close(fd_in);
 	return (0);
 }
-
+/*
 int	main(int argc, char **argv, char **env)
 {
  	t_mishell	mish;
@@ -188,16 +188,16 @@ int	main(int argc, char **argv, char **env)
 	
  	ft_call_pipex(&mish);
 
-/*	printf("\n\n");
-	int	i = 0;
-	while (files.tab_var_env[i])
-	{
-		//if (ft_strncmp(files.tab_var_env[i], "PWD", 3) == 0 || ft_strncmp(files.tab_var_env[i], "OLDPWD", 6) == 0)
-		printf("%s\n\n", files.tab_var_env[i]);
-		i++;
-	}*/
+//	printf("\n\n");
+//	int	i = 0;
+//	while (files.tab_var_env[i])
+//	{
+//		//if (ft_strncmp(files.tab_var_env[i], "PWD", 3) == 0 || ft_strncmp(files.tab_var_env[i], "OLDPWD", 6) == 0)
+//		printf("%s\n\n", files.tab_var_env[i]);
+//		i++;
+//	} retest bultin avec nvx pipex ////////
 
 	ft_free_files(mish.files);
 	ft_free_cmds(&mish);
 	return (0);
-}
+}*/
