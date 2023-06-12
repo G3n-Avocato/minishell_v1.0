@@ -32,23 +32,57 @@ void	sigquit_outfork_d(int signum)
 	exit (2);
 }
 
+void	sig_fork(int signum)
+{
+	(void)signum;
+	printf("Quit (core dumped)\n");
+	g_status = 131;
+	exit (131);
+}
+
+int	ft_fork(void)
+{
+	int	pid;
+	int	status;
+	char	*buf;
+
+	buf = malloc(sizeof(char) * 1024);
+	pid = fork();
+	signal(SIGQUIT, sig_fork);
+	if (pid == 0)
+	{
+		printf("i'm fork\n");
+		while (read(0, buf, sizeof(buf)) != 0)
+		{
+		}	
+	}
+	else if (pid > 0)
+	{
+		wait(&status);
+		if (WIFEXITED(status))
+			g_status = WEXITSTATUS(status);
+	}
+	else
+		printf("error\n");
+	return (0);
+}
+
 int	main(void)
 {
-	char	*buf;
-	int		d;
+	//char	*buf;
 
-	d = -1;
-	g_status = 0;
-	buf = malloc(sizeof(char) * 1024);
+	g_status = -1;
+	//buf = malloc(sizeof(char) * 1024);
 	
 
 	signal(SIGINT, sigint_outfork);
 	signal(SIGQUIT, SIG_IGN);
-	while (read(0, buf, sizeof(buf)) != 0)
-	{
-		if (g_status == 130)
-			break ;
-	}
-	printf("%d\n", g_status);
+	//while (read(0, buf, sizeof(buf)) != 0)
+	//{
+		ft_fork();
+	//	if (g_status >= 0)
+	//		break ;
+	//}
+	printf(" stat = %d\n", g_status);
 	return (0);
 }
