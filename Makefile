@@ -57,7 +57,8 @@ SRC			= src/ft_check_builtins.c \
 			src/var_env/ft_parsing_var_env.c \
 			src/var_env/ft_parsing_var_env_utils.c \
 			src/var_env/ft_join_var_env_str.c \
-			src/signal/signal.c
+			src/signal/signal.c \
+			src/signal/main_signal_test.c
 
 OBJ			= $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 LIBFT		= libft
@@ -96,3 +97,4 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
+

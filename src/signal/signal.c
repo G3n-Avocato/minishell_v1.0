@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 12:48:56 by lamasson          #+#    #+#             */
-/*   Updated: 2023/06/11 15:03:51 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/06/12 13:36:50 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,10 @@ void	sigint_outfork(int signum)
 		//return prompt readline
 		g_status = 130;
 	}
+	return ;
 }
 
-void	sigquit_outfork_d(int signum)
-{
-	(void)signum;
-	printf("exit");
-	exit (2);
-}
-
-void	sig_fork(int signum)
+void	sigquit_fork(int signum)
 {
 	(void)signum;
 	printf("Quit (core dumped)\n");
@@ -48,7 +42,7 @@ int	ft_fork(void)
 
 	buf = malloc(sizeof(char) * 1024);
 	pid = fork();
-	signal(SIGQUIT, sig_fork);
+	signal(SIGQUIT, sigquit_fork);
 	if (pid == 0)
 	{
 		printf("i'm fork\n");
@@ -66,7 +60,7 @@ int	ft_fork(void)
 		printf("error\n");
 	return (0);
 }
-
+/*
 int	main(void)
 {
 	//char	*buf;
@@ -83,6 +77,6 @@ int	main(void)
 	//	if (g_status >= 0)
 	//		break ;
 	//}
-	printf(" stat = %d\n", g_status);
+	//printf(" stat = %d\n", g_status);
 	return (0);
-}
+}*/
