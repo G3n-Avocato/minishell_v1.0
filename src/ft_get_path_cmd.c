@@ -6,11 +6,11 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 15:55:00 by lamasson          #+#    #+#             */
-/*   Updated: 2023/06/14 18:57:22 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/05/26 17:11:06 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "minishell.h"
 
 static char *ft_access_path(char **tab_path)
 {
@@ -77,26 +77,4 @@ char	**ft_get_tab_path(t_files files)
 	if (!path)
 		exit (1);
 	return (path);
-}
-
-void	ft_cmd_path_ready(t_mishell *mish)
-{
-	int	j;
-	
-	j = 0;
-	while (j < mish->nb_cmds)
-	{
-		if (check_if_cmd_built(mish->cmds[j]) == 0)
-		{
-			ft_init_path_cmd(mish, *mish->files, j);
-			if (mish->cmds[j].path == NULL)
-			{
-				if (access(mish->cmds[j].c[0], X_OK) == 0)
-					mish->cmds[j].path = ft_strdup (mish->cmds[j].c[0]);
-			}
-		}
-		else
-			mish->cmds[j].path = NULL;
-		j++;
-	}
 }

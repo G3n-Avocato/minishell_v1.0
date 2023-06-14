@@ -6,13 +6,13 @@
 #    By: gbertet <gbertet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/28 20:59:05 by lamasson          #+#    #+#              #
-#    Updated: 2023/04/27 18:46:40 by gbertet          ###   ########.fr        #
+#    Updated: 2023/06/14 16:36:49 by lamasson         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC	= clang
 
-CFLAGS	= -Wall -Wextra -Werror
+CFLAGS	= -Wall -Wextra -Werror -g
 
 RM	= rm -f
 

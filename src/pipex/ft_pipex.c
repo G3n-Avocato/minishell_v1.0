@@ -6,7 +6,7 @@
 /*   By: gbertet <gbertet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 13:47:51 by lamasson          #+#    #+#             */
-/*   Updated: 2023/06/13 18:40:54 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/06/14 19:48:14 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,39 +34,6 @@ int	open_fdout(t_fds fds)
 	return (op);
 }
 
-/*
-static void		ft_dup(int fd_in, int *fd, t_files files, t_mishell mish)
-{
-	if (files.fd_in == NULL && files.pos_cmd == 0)
-	{
-	//	dup2(fd[0], 0);
-	//	close(fd[0]);
-		close(fd[0]);
-		dup2(fd[1], 1);
-		close(fd[1]);
-	}
-	else
-	{
-		dup2(fd_in, 0);
-		close(fd_in);
-		close(fd[0]);
-	}
-	if (files.pos_cmd == mish.nb_cmds - 1 && files.fd_out != NULL)
-	{
-		close(fd[1]);
-		fd[1] = ft_open_fd_out(files);
-	}
-	else 
-	{
-		close(fd[1]);
-		dup2(fd[0], 0);
-		close(fd[0]);
-	}
-	//dup2(fd[1], 1);
-	//close(fd[1]);
-
-}*/
-
 static void	ft_dup(int fd_in , int *fd, t_mishell m)
 {
 	int	out;
@@ -84,45 +51,45 @@ static void	ft_dup(int fd_in , int *fd, t_mishell m)
 		dup2(fd[1], 1);
 		close(fd[1]);
 	}
-	if (!m.cmds[m.pos_cmd].fds->fd_in && fd_in < 0 && check_if_cmd_built(m.cmds[m.pos_cmd]) != 2)
+/*	if (!m.cmds[m.pos_cmd].fds->fd_in && check_if_cmd_built(m.cmds[m.pos_cmd]) != 2)
 	{
 		close(fd[1]);
 		dup2(fd[0], 0);
 		close(fd[0]);
-	}
-	else if (fd_in > -1)
+	}*/
+	if (fd_in > -1)
 	{
 		close(fd[1]);
 		dup2(fd_in, 0);
 		close(fd_in);
 	}
-	else {
+//	else {
 		close(fd[0]);
 		close(fd[1]);
-	}
+//	}
 }
 
-static int		ft_fork(t_mishell mish, int fd_in, int *fd)
+static int		ft_fork(t_mishell *mish, int fd_in, int *fd)
 {
-	mish.pid[mish.pos_cmd] = fork();
-	if (mish.pid[mish.pos_cmd] < 0)
+	mish->pid[mish->pos_cmd] = fork();
+	if (mish->pid[mish->pos_cmd] < 0)
 		perror("fork");
-	if (mish.pid[mish.pos_cmd] == 0)
+	if (mish->pid[mish->pos_cmd] == 0)
 	{
-		ft_dup(fd_in, fd, mish);
-		ft_exec_cmd(mish, *mish.files);
+		ft_dup(fd_in, fd, *mish);
+		ft_exec_cmd(mish);
 	}
-	if (mish.pos_cmd == mish.nb_cmds - 1)
+	if (mish->pos_cmd == mish->nb_cmds - 1)
 	{	
 		close(fd[0]);
-		if (mish.cmds[mish.pos_cmd].fds->fd_out != NULL)
+		if (mish->cmds[mish->pos_cmd].fds->fd_out != NULL)
 			close(fd[1]);
 	}
 	return (0);
 }
 
 //gestion close here_doc voir si implementer
-static int	ft_pipe(t_mishell mish, int fd_in)
+static int	ft_pipe(t_mishell *mish, int fd_in)
 {
 	int	fd[2];
 	
@@ -150,8 +117,7 @@ void	waitpid_tab(t_mishell *m)
 			waitpid(m->pid[i], &status, 0);
 		i++;
 	}
-	if (m->pid)
-		free(m->pid);
+	free(m->pid);
 }
 
 int	ft_call_pipex(t_mishell *m)
@@ -168,9 +134,12 @@ int	ft_call_pipex(t_mishell *m)
 	while (m->pos_cmd < m->nb_cmds)
 	{
 		if (m->cmds[m->pos_cmd].fds->fd_in != NULL)
+		{
+			close(fd_in);
 			fd_in = open_fdin(*m->cmds[m->pos_cmd].fds);
+		}
 		if (check_built_no_fork(m->cmds[m->pos_cmd].c, m->files, m) == 0)
-			fd_in = ft_pipe(*m, fd_in);
+			fd_in = ft_pipe(m, fd_in);
 		else
 			m->pid[m->pos_cmd] = -1;
 		m->pos_cmd++;
