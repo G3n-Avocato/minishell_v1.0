@@ -6,7 +6,7 @@
 /*   By: gbertet <gbertet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 17:30:57 by lamasson          #+#    #+#             */
-/*   Updated: 2023/06/14 18:15:12 by gbertet          ###   ########.fr       */
+/*   Updated: 2023/06/15 13:05:33 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,6 +199,7 @@ char	*rec_name_var_env(char *str);
 
 //		FT_JOIN_VAR_ENV_STR.C	//
 void	ft_join_all_str(t_var_env *data);
+void	ft_val_g_status(t_var_env *data, int j);
 
 //		SIGNAL.C				//
 void	sigint_outfork(int signum);
