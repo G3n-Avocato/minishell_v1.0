@@ -31,7 +31,7 @@ void    ft_fill_heredoc(char *eof, int fd)
 void    ft_heredoc(char **cmds)
 {
 	int	i;
-    int	fd;
+    	int	fd;
 
 	i = 0;
 	while (cmds[i])
