@@ -6,11 +6,12 @@
 /*   By: gbertet <gbertet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 16:54:31 by gbertet           #+#    #+#             */
-/*   Updated: 2023/06/15 15:32:47 by gbertet          ###   ########.fr       */
+/*   Updated: 2023/06/20 00:23:48 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+#include <stdio.h>
 
 /* free le nb de ligne choisi ds le cas
  * d'une erreur de malloc*/
@@ -64,13 +65,52 @@ void	ft_free_files(t_mishell *mish)
 	free(mish->files);
 }
 
-void    ft_exit(t_mishell *m)   
+static char	*ft_parsing_exit(t_mishell *m)
 {
+	int		i;
+	char	*arg;
+
+	i = 0;
+	arg = m->cmds[m->pos_cmd].c[1];
+	while (arg[i] != '\0')
+	{
+		if (i >= 20 && (ft_strncmp(arg, "-9223372036854775808", i) >= 0))
+			b = 1;
+		if (i >= 19 && (ft_strncmp(arg, "9223372036854775807", i) >= 0))
+			b = 1;
+		if ((ft_isdigit(arg[i]) == 0 && arg[i] != '-') || b == 1)
+		{
+			g_status = 2;
+			printf("minishell: exit: %s: numeric argument required\n", arg);
+			return (NULL);
+		}
+		i++;
+	}
+	return (arg);
+}
+
+int	ft_exit(t_mishell *m)   
+{
+	int		nb_arg;
+	char	*stat;
+
+	nb_arg = ft_tablen(m->cmds[m->pos_cmd].c);
+	stat = NULL;
+	if (nb_arg > 1)
+		stat = ft_parsing_exit(m);
+	if (nb_arg > 2 && stat != NULL)
+	{
+		g_status = 1;
+		printf("minishell: exit: too many arguments\n");
+		return (g_status);
+	}
+	if (stat != NULL)
+		g_status = ft_atoi(m->cmds[m->pos_cmd].c[1]);
 	if (m)
 	{
 		ft_free_cmds(m);
 		ft_free_files(m);
 		free(m->pid);
-	}
+	} 
 	exit (g_status % 256);
 }
