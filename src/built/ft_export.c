@@ -6,7 +6,7 @@
 /*   By: gbertet <gbertet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 18:59:02 by lamasson          #+#    #+#             */
-/*   Updated: 2023/06/16 16:36:07 by gbertet          ###   ########.fr       */
+/*   Updated: 2023/06/20 16:45:06 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,6 @@ char	*rec_var_env(char *str)
 	name = ft_substr(str, 0, i);
 	if (!name)
 		exit (1);
-	if (ft_strncmp(name, "PWD", 3) == 0 || ft_strncmp(name, "OLDPWD", 6) == 0 \
-		|| ft_strncmp(name, "HOME", 4) == 0 || ft_strncmp(name, "USER", 4) == 0)
-	{
-		free(name);
-		return (NULL);
-	}
 	return (name);
 }
 
@@ -94,7 +88,6 @@ void	switch_env(t_files *files, char *name, char *str)
 	free(name);
 }
 
-/* check syntax name de la var_env */
 int	ft_parse_name(char *str)
 {
 	int	i;
@@ -119,11 +112,8 @@ int	ft_export(char **c, t_files *files)
 	int		i;
 
 	i = 0;
-	if (!c[1])
-	{
-		ft_export_no_arg(*files);
+	if (ft_parse_export(c, files) == 0)
 		return (0);
-	}
 	while (c[++i])
 	{
 		if (ft_parse_name(c[i]) == 1) 
