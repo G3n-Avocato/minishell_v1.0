@@ -6,7 +6,7 @@
 /*   By: gbertet <gbertet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 16:54:31 by gbertet           #+#    #+#             */
-/*   Updated: 2023/06/20 00:23:48 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/06/20 14:56:06 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,16 +69,17 @@ static char	*ft_parsing_exit(t_mishell *m)
 {
 	int		i;
 	char	*arg;
+	int		len;
 
 	i = 0;
 	arg = m->cmds[m->pos_cmd].c[1];
+	len = ft_strlen(arg);
+	if ((len >= 20 && ft_strncmp(arg, "-9223372036854775809", len + 1) >= 0) \
+		|| (len >= 19 && ft_strncmp(arg, "9223372036854775808", len + 1) >= 0))
+		len = -1;
 	while (arg[i] != '\0')
 	{
-		if (i >= 20 && (ft_strncmp(arg, "-9223372036854775808", i) >= 0))
-			b = 1;
-		if (i >= 19 && (ft_strncmp(arg, "9223372036854775807", i) >= 0))
-			b = 1;
-		if ((ft_isdigit(arg[i]) == 0 && arg[i] != '-') || b == 1)
+		if ((ft_isdigit(arg[i]) == 0 && arg[i] != '-') || len == -1)
 		{
 			g_status = 2;
 			printf("minishell: exit: %s: numeric argument required\n", arg);
