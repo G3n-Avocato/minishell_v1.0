@@ -1,0 +1,47 @@
+Faire export lol="echo lol" dans zsh avant de lancer minishell
+Faire export mdr="lol" dans zsh avant de lancer minshell
+Faire export haha="<lol"  dans zsh avant de lancer minshell
+
+$haha = "<"lol pareil pour tous les caractere du type < > ' " (erreur commande  <lol pas trouver) $? = 127
+
+$"$" = $  (erreur commande  $ pas trouver) $? = 127
+
+
+
+<<$USER (On va dire que $USER = user)
+user
+oui
+$USER
+	-> quitte qu'a $USER et non sa valeur
+
+
+
+---------------------------------------------------------------------------------------------
+<<oui
+CTRL D
+	bash: warning: here-document at line 2 delimited by end-of-file (wanted `oui')
+	-> $? = 0
+---------------------------------------------------------------------------------------------
+<<oui
+CTRL C
+	\n
+	-> $? = 130
+---------------------------------------------------------------------------------------------
+<<oui
+CTRL \
+	Fais rien
+	-> $? = 0
+---------------------------------------------------------------------------------------------
+>tkt <<oui cat
+CTRL C
+	-> ne pas créer tkt + $? = 130
+---------------------------------------------------------------------------------------------
+
+
+
+<<'<lol'
+	-> limiter <lol
+---------------------------------------------------------------------------------------------
+export lol="echo <lol"
+$lol
+	-> print <lol et pas d'erreur de infile
