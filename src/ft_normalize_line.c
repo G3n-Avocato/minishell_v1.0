@@ -6,7 +6,7 @@
 /*   By: gbertet <gbertet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 17:59:08 by gbertet           #+#    #+#             */
-/*   Updated: 2023/06/21 18:46:44 by gbertet          ###   ########.fr       */
+/*   Updated: 2023/06/28 16:05:33 by gbertet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,10 +118,13 @@ char	*normalize_str(char *s, t_files *files)
 	res = format_str_spaces(res);
 	if (check_pipe(s))
 	{
+		g_status = 130;
 		free(res);
+		printf("Synthax error near unexpected token '|'.\n");
 		return (NULL);
 	}
 	res = ft_handle_var_env(res, *files);
+	res = format_str_spaces(res);
 	// res = ft_remove_quotes(res);
 	return (res);
 }
