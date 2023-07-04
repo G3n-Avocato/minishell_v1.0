@@ -7,20 +7,12 @@ $haha = "<"lol pareil pour tous les caractere du type < > ' " (erreur commande  
 $"$" = $  (erreur commande  $ pas trouver) $? = 127
 
 
-
-<<$USER (On va dire que $USER = user)
-user
-oui
-$USER
-	-> quitte qu'a $USER et non sa valeur
-
-
-
 ---------------------------------------------------------------------------------------------
 <<oui
 CTRL D
 	bash: warning: here-document at line 2 delimited by end-of-file (wanted `oui')
-	-> $? = 0
+	-
+	> $? = 0
 ---------------------------------------------------------------------------------------------
 <<oui
 CTRL C
