@@ -6,12 +6,12 @@
 /*   By: gbertet <gbertet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 19:16:03 by lamasson          #+#    #+#             */
-/*   Updated: 2023/06/27 15:11:44 by gbertet          ###   ########.fr       */
+/*   Updated: 2023/07/04 15:59:19 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-//fct en test
+
 char *ft_readline(char *str)
 {
 	char    *line;
@@ -26,13 +26,6 @@ char *ft_readline(char *str)
 		return (ft_strdup("exit"));
 }
 
-/* fct recup PWD est l'envoie
- * a readline pour afficher
- * nouveau prompt avec nouvelle
- * position de l'utilisateur
- * appeler a chaque nouvelle saisie
- * dans terminal*/
-
 int	ft_path_pos_prompt(void)
 {
 	char	*pwd;
@@ -46,7 +39,6 @@ int	ft_path_pos_prompt(void)
 		free(pwd);
 		return (1);
 	}
-	//ft_readline(pwd);
 	free(pwd);
 	return (0);
 }

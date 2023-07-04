@@ -4,8 +4,6 @@ Faire export haha="<lol"  dans zsh avant de lancer minshell
 
 $haha = "<"lol pareil pour tous les caractere du type < > ' " (erreur commande  <lol pas trouver) $? = 127
 
-$"$" = $  (erreur commande  $ pas trouver) $? = 127
-
 
 ---------------------------------------------------------------------------------------------
 <<oui
@@ -27,13 +25,5 @@ CTRL \
 >tkt <<oui cat
 CTRL C
 	-> ne pas créer tkt + $? = 130
+
 ---------------------------------------------------------------------------------------------
-
-
-
-<<'<lol'
-	-> limiter <lol
----------------------------------------------------------------------------------------------
-export lol="echo <lol"
-$lol
-	-> print <lol et pas d'erreur de infile

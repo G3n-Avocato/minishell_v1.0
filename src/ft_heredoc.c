@@ -6,7 +6,7 @@
 /*   By: gbertet <gbertet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 14:33:28 by gbertet           #+#    #+#             */
-/*   Updated: 2023/07/03 15:58:03 by gbertet          ###   ########.fr       */
+/*   Updated: 2023/07/04 20:00:44 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,13 @@ void    ft_fill_heredoc(char *eof, int fd)
 	eof_buff = ft_strdup(eof);
 	eof_buff = ft_remove_quotes(eof_buff);
 	line = ft_read_here_doc("> ", eof_buff);
+	if (line[0] == 0 && g_status == -1)
+	{
+		free(eof_buff);
+		close(fd);
+		g_status = 130;
+		return ;
+	}
 	eof_len = ft_strlen(eof_buff);
 	if (eof_buff)
 	{
@@ -29,6 +36,11 @@ void    ft_fill_heredoc(char *eof, int fd)
 			ft_putstr_fd(line, fd);
 			free(line);
 			line = ft_read_here_doc("> ", eof_buff);
+			if (line[0] == 0 && g_status == -1)
+			{
+				g_status = 130;
+				break ;
+			}
 		}
 	}
 	else
@@ -39,6 +51,11 @@ void    ft_fill_heredoc(char *eof, int fd)
 			free(line);
 			line = ft_read_here_doc("> ", eof_buff);
 		}
+	}
+	if (g_status == -2)
+	{
+		g_status = 0;
+		printf("bash: warning: here-document delimited by end-of-file\n");
 	}
 	free(eof_buff);
 	close(fd);
