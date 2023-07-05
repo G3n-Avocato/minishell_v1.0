@@ -6,7 +6,7 @@
 /*   By: gbertet <gbertet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 19:16:03 by lamasson          #+#    #+#             */
-/*   Updated: 2023/07/04 15:59:19 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/07/05 13:36:27 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ char	*ft_read_here_doc(char *prompt, char *eof)
 	}
 	else
 	{
-		printf("\n");
+		printf("bash: warning: here-document delimited by end-of-file (wanted `%s')\n", eof);
 		free(line);
 		return (eof);
 	}

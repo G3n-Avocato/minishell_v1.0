@@ -6,12 +6,11 @@
 /*   By: gbertet <gbertet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 12:58:15 by lamasson          #+#    #+#             */
-/*   Updated: 2023/07/04 19:39:28 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/07/05 14:28:03 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-#include <readline/readline.h>
 
 int	g_status;
 
