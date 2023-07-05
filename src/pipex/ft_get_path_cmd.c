@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 15:55:00 by lamasson          #+#    #+#             */
-/*   Updated: 2023/07/05 15:35:37 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/07/05 15:45:27 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char	**ft_get_tab_path(t_files files)
 	while (files.tab_var_env[i] && ft_strncmp(files.tab_var_env[i], "PATH=", 5))
 			i++;
 	if (files.tab_var_env[i] == NULL)
-		return (NULL); // si not PATH = var_env PATH a ete unset voir gestion de se cas et si il est possible
+		return (NULL);
 	tmp = ft_substr(files.tab_var_env[i], 5, ft_strlen(files.tab_var_env[i]));
 	if (!tmp)
 		exit (1);
@@ -80,11 +80,12 @@ char	**ft_get_tab_path(t_files files)
 void	ft_cmd_path_ready(t_mishell *mish)
 {
 	int	j;
-	
+
 	j = 0;
 	while (j < mish->nb_cmds)
 	{
-		if (check_if_cmd_built(mish->cmds[j]) == 0 && mish->cmds[j].c[0][0] != '\0')
+		if (check_if_cmd_built(mish->cmds[j]) == 0 && \
+			mish->cmds[j].c[0][0] != '\0')
 		{
 			ft_init_path_cmd(mish, *mish->files, j);
 			if (mish->cmds[j].path == NULL)
