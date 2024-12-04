@@ -1,2 +1,2 @@
-42 Project minishell
+42 Project minishell  
 with BGauth1
